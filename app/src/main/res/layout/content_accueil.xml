@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.cabanettes.axel.nguyen.eric.depoker.Accueil"
-    tools:showIn="@layout/activity_main2">
+    tools:context="com.cabanettes.axel.nguyen.eric.depoker.Accueil">
 
     <TextView
         android:id="@+id/title"

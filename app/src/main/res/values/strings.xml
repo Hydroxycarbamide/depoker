@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">DePoker</string>
     <string name="title_activity_accueil">Accueil</string>
+
     <string name="reset">Reset score</string>
     <string name="settings">Settings</string>
     <string name="player1">Player 1</string>
     <string name="player2">Player 2</string>
-    <string name="enterName">Please, enter your name for both players</string>
+    <string name="enterName">Please enter the names of the players</string>
+    <string name="name">Name</string>
 </resources>
