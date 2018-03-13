@@ -11,13 +11,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-
-            android:parentActivityName=".Accueil">
+            android:parentActivityName=".Accueil"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
             android:name=".Accueil"
-            android:label="@string/title_activity_accueil">
+            android:label="@string/title_activity_accueil"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
