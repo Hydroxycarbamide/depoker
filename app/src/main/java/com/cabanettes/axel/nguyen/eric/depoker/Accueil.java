@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import junit.framework.Test;
+
 import java.util.List;
 
 public class Accueil extends AppCompatActivity {
@@ -32,6 +34,7 @@ public class Accueil extends AppCompatActivity {
             TextView t = (TextView) findViewById(R.id.versus);
             t.setText(player1 + " vs. " + player2);
         }
+
 
 
 
