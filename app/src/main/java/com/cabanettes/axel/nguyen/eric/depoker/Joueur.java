@@ -1,3 +1,5 @@
+package com.cabanettes.axel.nguyen.eric.depoker;
+
 /**
  * Created by Eric on 13/03/2018.
  */
@@ -6,11 +8,15 @@ public class Joueur {
     int idJoueur;
     String name;
 
+    public Joueur(){}
+
     public Joueur(int idJoueur, String name){
         this.idJoueur = idJoueur;
         this.name = name;
 
     }
+
+    public Joueur(String name){this.name = name;}
 
     public String getName() {
         return name;
