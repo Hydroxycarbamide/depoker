@@ -12,18 +12,25 @@
         <activity
             android:name=".MainActivity"
             android:parentActivityName=".Accueil"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Accueil"
-            android:label="@string/title_activity_accueil"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName=".Accueil" />
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".SettingsActivity"
+            android:label="@string/about">
+
         </activity>
     </application>
 

@@ -64,11 +64,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Joueur getJoueur(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_JOUEUR, new String[]{KEY_ID,
-                        KEY_NAME}, KEY_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+        Cursor cursor = db.query(TABLE_JOUEUR,
+                new String[]{KEY_ID,KEY_NAME},
+                KEY_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null, null, null, null);
+
+        if (cursor != null) cursor.moveToFirst();
 
         Joueur joueur = new Joueur(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1));
