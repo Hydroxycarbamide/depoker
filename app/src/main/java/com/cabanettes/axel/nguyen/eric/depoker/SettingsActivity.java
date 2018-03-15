@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,17 +20,41 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingslayout);
 
-        ListView liste = (ListView) findViewById(R.id.settingList);
-        liste.setFocusable(false);
-        List<String> valeurs = new ArrayList<>();
-        for(String s : getResources().getStringArray(R.array.settings)){
-            valeurs.add(s);
-        }
-        /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,valeurs);
-        liste.setAdapter(adapter);
-        liste.setDivider(null);*/
-        CustomListAdapter listAdapter = new CustomListAdapter(this , R.layout.customlist, valeurs);
-        liste.setAdapter(listAdapter);
+
+        ListView listeGeneral = (ListView) findViewById(R.id.generalList);
+        listeGeneral.setFocusable(true);
+        listeGeneral.setDivider(null);
+        String[] valeurs = getResources().getStringArray(R.array.settingsGeneral);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,valeurs);
+        listeGeneral.setAdapter(adapter);
+        listeGeneral.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                switch(position){
+                    case 0:  Intent newActivity = new Intent(view.getContext(), MainActivity.class);
+                        startActivity(newActivity);
+                        break;
+                }
+            }
+        });
+
+        ListView listeOther = (ListView) findViewById(R.id.otherList);
+        listeOther.setFocusable(true);
+        listeOther.setDivider(null);
+        String[] valeursOther = getResources().getStringArray(R.array.settingsAbout);
+        ArrayAdapter<String> adapterOther = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,valeursOther);
+        listeOther.setAdapter(adapterOther);
+        listeOther.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                switch(position){
+                    case 0:  Intent newActivity = new Intent(view.getContext(), AboutActivity.class);
+                        startActivity(newActivity);
+                        break;
+                }
+            }
+        });
+
     }
 
     //Creation du menu
@@ -46,4 +72,6 @@ public class SettingsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

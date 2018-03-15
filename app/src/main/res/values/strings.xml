@@ -6,5 +6,8 @@
     <string name="player2">Player 2</string>
     <string name="enterName">Please enter the names of the players</string>
     <string name="name">Name</string>
+    <string name="changePlayersName">Change players names</string>
     <string name="about">About us</string>
+    <string name="general">GENERAL</string>
+    <string name="other">OTHER</string>
 </resources>

@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Accueil extends AppCompatActivity {
 
+    //Stockage BDD
     public static DatabaseHandler db;
 
     @Override
@@ -21,33 +22,38 @@ public class Accueil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_accueil);
 
+        //Init BDD
         db = new DatabaseHandler(this);
 
-        if(db.getJoueursCount()==0)
-            startActivity(new Intent(this, MainActivity.class));
-        else {
-
-
-            this.printLog();
-            String player1 = db.getJoueur(1).getName();
-            String player2 = db.getJoueur(2).getName();
-
-            TextView t = (TextView) findViewById(R.id.versus);
-            t.setText(player1 + " vs. " + player2);
-
-            Button btnSettings = (Button) findViewById(R.id.btnOption);
-            btnSettings.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    runSettings();
-                }
-            });
+        if (db.getJoueursCount() == 0) {
+            db.addJoueur(new Joueur(1, "Player 1"));
+            db.addJoueur(new Joueur(2, "Player 2"));
         }
+
+        //Verification
+        this.printLog();
+
+        //Affichage sur l'accueil
+        String player1 = db.getJoueur(1).getName();
+        String player2 = db.getJoueur(2).getName();
+        TextView t = (TextView) findViewById(R.id.versus);
+        t.setText(player1 + " vs. " + player2);
+
+        //Bouton settings
+        Button btnSettings = (Button) findViewById(R.id.btnOption);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-    private void printLog(){
-        //Log (Static args)
-        Log.d("Number players:",""+db.getJoueursCount());
+    private void printLog() {
+        //Log
+        Log.d("Number players:", "" + db.getJoueursCount());
         Log.d("Reading: ", "Reading all players..");
         List<Joueur> joueurs = db.getAllJoueurs();
         for (Joueur joueur : joueurs) {
@@ -56,9 +62,5 @@ public class Accueil extends AppCompatActivity {
         }
     }
 
-    protected void runSettings(){
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
-    }
 
 }

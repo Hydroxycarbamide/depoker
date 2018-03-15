@@ -11,8 +11,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:parentActivityName=".Accueil"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".SettingsActivity"
+            android:label="@string/settings"
+            />
         <activity
             android:name=".Accueil"
             android:theme="@style/AppTheme.NoActionBar">

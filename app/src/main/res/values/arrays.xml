@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="settings">
+    <string-array name="settingsGeneral">
         <item>Change players names</item>
+    </string-array>
+    <string-array name="settingsAbout">
+        <item>@string/about</item>
     </string-array>
 </resources>
