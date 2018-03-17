@@ -1,6 +1,8 @@
 package com.cabanettes.axel.nguyen.eric.depoker;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -33,11 +35,13 @@ public class Accueil extends AppCompatActivity {
         //Verification
         this.printLog();
 
+
         //Affichage sur l'accueil
         String player1 = db.getJoueur(1).getName();
         String player2 = db.getJoueur(2).getName();
         TextView t = (TextView) findViewById(R.id.versus);
         t.setText(player1 + " vs. " + player2);
+
 
         //Bouton settings
         Button btnSettings = (Button) findViewById(R.id.btnOption);
@@ -46,6 +50,19 @@ public class Accueil extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SettingsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        //Bouton play
+        Button btnPlay = (Button) findViewById(R.id.btnPlay);
+        btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(),R.raw.sound);
+                mp.start();
+                /*Intent intent = new Intent(view.getContext(), SettingsActivity.class);
+                startActivity(intent);*/
             }
         });
 

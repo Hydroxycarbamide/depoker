@@ -2,7 +2,7 @@
 <resources>
 
     <string-array name="settingsGeneral">
-        <item>Change players names</item>
+        <item>@string/changePlayersName</item>
     </string-array>
     <string-array name="settingsAbout">
         <item>@string/about</item>

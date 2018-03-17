@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void registerPlayers(View view){
-        Intent intent = new Intent(this, Accueil.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         EditText joueur1 = (EditText) findViewById(R.id.editTextPlayer1);
         EditText joueur2 = (EditText) findViewById(R.id.editTextPlayer2);
         String nomJoueur1 = joueur1.getText().toString();
@@ -54,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
             Accueil.db.updateJoueur(j1);
             Accueil.db.updateJoueur(j2);
         }
-        startActivity(intent);
+
+        Toast.makeText(view.getContext(), getResources().getIdentifier("nameChanged","string",view.getContext().getPackageName()), Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DePoker</string>
+    <string name="reset">Réinitialiser le score</string>
+    <string name="settings">Paramètres</string>
+    <string name="player1">Joueur 1</string>
+    <string name="player2">Joueur 2</string>
+    <string name="enterName">Veuillez entrer les noms des joueurs</string>
+    <string name="name">Nom</string>
+    <string name="changePlayersName">Changer les noms des joueurs</string>
+    <string name="nameChanged">Noms des joueurs changé</string>
+    <string name="about">A propos de nous</string>
+    <string name="general">Général</string>
+    <string name="other">Autres</string>
+    <string name="play">Jouer</string>
+</resources>
