@@ -13,4 +13,13 @@
     <string name="general">Général</string>
     <string name="other">Autres</string>
     <string name="play">Jouer</string>
+    <string name="aboutSubTitle">Un jeu de dés</string>
+    <string name="aboutText">
+        DePoker est un jeu où vous jouez au poker avec des dés.\n
+        Fait par :\n
+            &#8226; Axel Cabanettes\n
+            &#8226; Eric Nguyen\n
+        S4 Groupe B
+    </string>
+    <string name="learnMore">"Code source : \nhttps://github.com/Hydroxycarbamide/depoker"</string>
 </resources>
