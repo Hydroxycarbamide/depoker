@@ -10,9 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -20,7 +17,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingslayout);
 
-
+        //Liste concernant la categorie GENERAL
         ListView listeGeneral = (ListView) findViewById(R.id.generalList);
         listeGeneral.setFocusable(true);
         listeGeneral.setDivider(null);
@@ -31,13 +28,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 switch(position){
-                    case 0:  Intent newActivity = new Intent(view.getContext(), MainActivity.class);
+                    case 0:  Intent newActivity = new Intent(view.getContext(), nameChanger.class);
                         startActivity(newActivity);
                         break;
                 }
             }
         });
 
+        //Liste concernant la categorie OTHER
         ListView listeOther = (ListView) findViewById(R.id.otherList);
         listeOther.setFocusable(true);
         listeOther.setDivider(null);
