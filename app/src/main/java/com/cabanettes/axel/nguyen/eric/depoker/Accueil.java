@@ -70,7 +70,6 @@ public class Accueil extends AppCompatActivity {
             public void onClick(View view) {
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.sound);
                 mp.start();
-                radioButtonPopup(values);
             }
         });
 
@@ -85,35 +84,6 @@ public class Accueil extends AppCompatActivity {
             String log = "Id: " + joueur.getIdJoueur() + " ,Name: " + joueur.getName();
             Log.d("Name: ", log);
         }
-    }
-
-    private void radioButtonPopup(String[] values) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Accueil.this);
-
-        builder.setTitle(getResources().getIdentifier("selectNumberTurn","string",getApplicationContext().getPackageName()));
-
-        builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
-
-                Intent i = new Intent(getApplicationContext(), SettingsActivity.class);
-                switch (item) {
-                    case 0:
-                        i.putExtra("numberTurn",1);
-                        break;
-                    case 1:
-                        i.putExtra("numberTurn",2);
-                        break;
-                    case 2:
-                        i.putExtra("numberTurn",3);
-                        break;
-                }
-                startActivity(i);
-                alertDialog1.dismiss();
-            }
-
-        });
-        alertDialog1 = builder.create();
-        alertDialog1.show();
     }
 
 
