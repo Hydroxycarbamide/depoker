@@ -21,4 +21,7 @@
         S4 Group B.
     </string>
     <string name="learnMore">"Source code : \nhttps://github.com/Hydroxycarbamide/depoker"</string>
+    <string name="selectNumberTurn">Select the number of turn</string>
+    <string name="quitter">QUIT</string>
+    <string name="lang">Change game language</string>
 </resources>

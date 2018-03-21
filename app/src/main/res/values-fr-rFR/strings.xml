@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DePoker</string>
     <string name="reset">Réinitialiser le score</string>
     <string name="settings">Paramètres</string>
     <string name="player1">Joueur 1</string>
@@ -22,4 +21,7 @@
         S4 Groupe B
     </string>
     <string name="learnMore">"Code source : \nhttps://github.com/Hydroxycarbamide/depoker"</string>
+    <string name="selectNumberTurn">Sélectionnez le nombre de tours</string>
+    <string name="quitter">QUITTER</string>
+    <string name="lang">Change la langue du jeu</string>
 </resources>

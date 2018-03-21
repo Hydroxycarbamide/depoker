@@ -3,12 +3,14 @@ package com.cabanettes.axel.nguyen.eric.depoker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -16,6 +18,14 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingslayout);
+
+        //Intent  test
+        Bundle extras = getIntent().getExtras();
+        if(extras!=null)
+        {
+            Integer numberTurn =(Integer) extras.get("numberTurn");
+            Log.d("Number of turn",""+numberTurn.toString());
+        }
 
         //Liste concernant la categorie GENERAL
         ListView listeGeneral = (ListView) findViewById(R.id.generalList);
@@ -53,6 +63,9 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        TextView version = (TextView) findViewById(R.id.version);
+        version.setText(""+BuildConfig.VERSION_NAME);
+
     }
 
     //Creation du menu
@@ -67,6 +80,7 @@ public class SettingsActivity extends AppCompatActivity {
             case R.id.about:
             startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
                 return true;
+            case R.id.action_lang:
         }
         return super.onOptionsItemSelected(item);
     }

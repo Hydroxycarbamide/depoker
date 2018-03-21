@@ -44,6 +44,13 @@
             android:layout_height="wrap_content">
 
         </ListView>
+
+        <TextView
+            android:id="@+id/version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

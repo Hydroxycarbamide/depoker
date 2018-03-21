@@ -6,6 +6,6 @@
     </string-array>
     <string-array name="settingsAbout">
         <item>@string/about</item>
-        <item></item>
+        <item>Version</item>
     </string-array>
 </resources>

@@ -30,7 +30,8 @@
         <activity
             android:name=".AboutActivity"
             android:parentActivityName=".SettingsActivity"
-            android:label="@string/about">
+            android:label="@string/about"
+            android:screenOrientation="portrait">
 
         </activity>
 
