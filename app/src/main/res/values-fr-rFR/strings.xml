@@ -35,5 +35,6 @@
     <string name="fullHouse">Full</string>
     <string name="fourKind">Carré</string>
     <string name="fiveKind">Poker</string>
-    <string name="light">Lumière</string>
+    <string name="light">Mode nuit...</string>
+    <string name="changeNumberTurn">Changer le nombre de tours</string>
 </resources>

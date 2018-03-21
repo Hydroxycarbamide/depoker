@@ -1,6 +1,5 @@
 package com.cabanettes.axel.nguyen.eric.depoker;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +20,7 @@ public class nameChanger extends AppCompatActivity {
             setTheme(R.style.AppTheme_Dark);
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_namechanger);
 
 
         //Bouton enregistrer

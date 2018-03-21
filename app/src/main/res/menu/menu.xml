@@ -6,12 +6,12 @@
         android:id="@+id/action_light"
         android:checkable="false"
         android:enabled="false"
-        android:icon="@drawable/ic_action_bulbelight"
+        android:icon="?attr/lightbulbtoggle"
         android:title="@string/light"
         app:showAsAction="always" />
     <item
         android:id="@+id/app_bar_switch_light"
-        android:title=""
+        android:title="@string/light"
         app:showAsAction="always"
         app:actionLayout="@layout/switch_item" />
     <item android:id="@+id/about"

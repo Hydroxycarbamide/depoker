@@ -52,8 +52,13 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 switch(position){
-                    case 0:  Intent newActivity = new Intent(view.getContext(), nameChanger.class);
-                        startActivity(newActivity);
+                    case 0:
+                        Intent activity_name = new Intent(view.getContext(), nameChanger.class);
+                        startActivity(activity_name);
+                        break;
+                    case 1:
+                        Intent activity_turn = new Intent(view.getContext(), turnNumber.class);
+                        startActivity(activity_turn);
                         break;
                 }
             }

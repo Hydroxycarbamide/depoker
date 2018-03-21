@@ -36,5 +36,6 @@
     <string name="fullHouse">Full House</string>
     <string name="fourKind">Four of a kind</string>
     <string name="fiveKind">Five of a kind</string>
-    <string name="light">Light</string>
+    <string name="light">Night mode...</string>
+    <string name="changeNumberTurn">Change the number of turn</string>
 </resources>

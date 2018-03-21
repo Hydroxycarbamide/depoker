@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="lightbulbtoggle">@drawable/ic_action_lightbulbtoggleon</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,12 +18,12 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <!-- Dark application theme. -->
+    <!-- Dark application theme -->
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
-        <!-- Dark theme base colours -->
         <item name="colorPrimary">@color/darkColorPrimary</item>
         <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
         <item name="colorAccent">@color/darkColorAccent</item>
+        <item name="lightbulbtoggle">@drawable/ic_action_lightbulbtoggleoff</item>
     </style>
 
     <style name="AppTheme.Dark.NoActionBar">
@@ -32,4 +33,6 @@
 
     <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat" />
+
+    <attr name="lightbulbtoggle" format="reference"/>
 </resources>

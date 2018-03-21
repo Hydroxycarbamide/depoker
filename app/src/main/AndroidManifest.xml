@@ -11,9 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".nameChanger"
-            android:parentActivityName=".SettingsActivity"
             android:label="@string/settings"
-            />
+            android:parentActivityName=".SettingsActivity" />
         <activity
             android:name=".Accueil"
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,14 +28,17 @@
             android:parentActivityName=".Accueil" />
         <activity
             android:name=".AboutActivity"
-            android:parentActivityName=".SettingsActivity"
-            android:label="@string/about">
-
-        </activity>
+            android:label="@string/about"
+            android:parentActivityName=".SettingsActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".turnNumber"
+            android:label="@string/settings"
+            android:parentActivityName=".SettingsActivity"/>
     </application>
 
 </manifest>
