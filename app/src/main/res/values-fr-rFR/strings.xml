@@ -24,4 +24,16 @@
     <string name="selectNumberTurn">Sélectionnez le nombre de tours</string>
     <string name="quitter">QUITTER</string>
     <string name="lang">Change la langue du jeu</string>
+    <string name="one">Un</string>
+    <string name="two">Deux</string>
+    <string name="three">Trois</string>
+    <string name="chooseDice">Choisissez quels dés garder</string>
+    <string name="onePair">Une Paire</string>
+    <string name="twoPair">Deux Paire</string>
+    <string name="threeKind">Brelan</string>
+    <string name="straight">Grande Suite</string>
+    <string name="fullHouse">Full</string>
+    <string name="fourKind">Carré</string>
+    <string name="fiveKind">Poker</string>
+    <string name="light">Lumière</string>
 </resources>

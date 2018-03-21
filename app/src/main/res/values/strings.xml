@@ -24,4 +24,17 @@
     <string name="selectNumberTurn">Select the number of turn</string>
     <string name="quitter">QUIT</string>
     <string name="lang">Change game language</string>
+    <string name="one">One</string>
+    <string name="two">Two</string>
+    <string name="three">Three</string>
+    <string name="chooseDice">Choose which dice to keep</string>
+    <string name="bust" translatable="false">Bust</string>
+    <string name="onePair">One Pair</string>
+    <string name="twoPair">Two Pairs</string>
+    <string name="threeKind">Three-of-a-kind</string>
+    <string name="straight">Straight</string>
+    <string name="fullHouse">Full House</string>
+    <string name="fourKind">Four of a kind</string>
+    <string name="fiveKind">Five of a kind</string>
+    <string name="light">Light</string>
 </resources>
