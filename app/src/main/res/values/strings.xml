@@ -24,9 +24,9 @@
     <string name="selectNumberTurn">Select the number of turn</string>
     <string name="quitter">QUIT</string>
     <string name="lang">Change game language</string>
-    <string name="one">One</string>
-    <string name="two">Two</string>
-    <string name="three">Three</string>
+    <string name="one" translatable="false">1</string>
+    <string name="two" translatable="false">2</string>
+    <string name="three" translatable="false">3</string>
     <string name="chooseDice">Choose which dice to keep</string>
     <string name="bust" translatable="false">Bust</string>
     <string name="onePair">One Pair</string>
