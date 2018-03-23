@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 player2 = hand.ordinal();
             }
+            result.setTextColor(getResources().getColor(R.color.colorAccent));
             switch (hand) {
                 case BUST:
                     result.setText(getResources().getString(R.string.bust));
@@ -272,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeImage(ToggleButton button){
         button.setHeight(button.getMeasuredWidth());
-        ImageSpan imageSpan = imageSpan = new ImageSpan(this, android.R.drawable.ic_menu_info_details);;
+        ImageSpan imageSpan;
         Drawable diePic = getResources().getDrawable(R.drawable.dice1);;
         switch (button.getText().toString()){
             case "1":
@@ -294,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 diePic = getResources().getDrawable(R.drawable.dice6);
                 break;
         }
-        diePic.setBounds(0, 0, 64, 64);
+        diePic.setBounds(0, 0, button.getMeasuredWidth()-96, button.getMeasuredWidth()-96);
         imageSpan = new ImageSpan(diePic);
         SpannableString content = new SpannableString("X");
         content.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
