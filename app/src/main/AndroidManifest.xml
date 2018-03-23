@@ -39,7 +39,9 @@
             android:name=".turnNumber"
             android:label="@string/settings"
             android:parentActivityName=".SettingsActivity"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"
+            android:parentActivityName=".Accueil"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

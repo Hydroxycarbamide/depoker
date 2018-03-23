@@ -1,10 +1,15 @@
 package com.cabanettes.axel.nguyen.eric.depoker;
 
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         boolean useDarkTheme = preferences.getBoolean("dark_theme", false);
 
         if(useDarkTheme) {
-            setTheme(R.style.AppTheme_Dark);
+            setTheme(R.style.AppTheme_Dark_NoActionBar);
         }
 
         super.onCreate(savedInstanceState);
@@ -95,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
             this.die3.setText("" + dice[2]);
             this.die4.setText("" + dice[3]);
             this.die5.setText("" + dice[4]);
+            changeImage(die1);
+            changeImage(die2);
+            changeImage(die3);
+            changeImage(die4);
+            changeImage(die5);
             /*
             * Bundle extras = getIntent().getExtras();
             * if(extras != null){
@@ -102,17 +112,17 @@ public class MainActivity extends AppCompatActivity {
             *   maxturns =
             * }*/
             this.turns++;
+            this.die1.setChecked(false);
+            this.die2.setChecked(false);
+            this.die3.setChecked(false);
+            this.die4.setChecked(false);
+            this.die5.setChecked(false);
             if (turns == maxturns) {
                 this.die1.setEnabled(false);
                 this.die2.setEnabled(false);
                 this.die3.setEnabled(false);
                 this.die4.setEnabled(false);
                 this.die5.setEnabled(false);
-                this.die1.setChecked(false);
-                this.die2.setChecked(false);
-                this.die3.setChecked(false);
-                this.die4.setChecked(false);
-                this.die5.setChecked(false);
                 Button btn = (Button) findViewById(R.id.roll);
                 btn.setEnabled(false);
                 handResult(result);
@@ -260,6 +270,38 @@ public class MainActivity extends AppCompatActivity {
         FIVEOFAKIND
     }
 
+    private void changeImage(ToggleButton button){
+        button.setHeight(button.getMeasuredWidth());
+        ImageSpan imageSpan = imageSpan = new ImageSpan(this, android.R.drawable.ic_menu_info_details);;
+        Drawable diePic = getResources().getDrawable(R.drawable.dice1);;
+        switch (button.getText().toString()){
+            case "1":
+                diePic = getResources().getDrawable(R.drawable.dice1);
+                break;
+            case "2":
+                diePic = getResources().getDrawable(R.drawable.dice2);
+                break;
+            case "3":
+                diePic = getResources().getDrawable(R.drawable.dice3);
+                break;
+            case "4":
+                diePic = getResources().getDrawable(R.drawable.dice4);
+                break;
+            case "5":
+                diePic = getResources().getDrawable(R.drawable.dice5);
+                break;
+            case "6":
+                diePic = getResources().getDrawable(R.drawable.dice6);
+                break;
+        }
+        diePic.setBounds(0, 0, 64, 64);
+        imageSpan = new ImageSpan(diePic);
+        SpannableString content = new SpannableString("X");
+        content.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        button.setText(content);
+        button.setTextOn(content);
+        button.setTextOff(content);
+    }
 }
 
 

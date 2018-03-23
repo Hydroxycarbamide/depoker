@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -17,7 +18,7 @@ public class turnNumber extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("dark_theme", false);
 
-        if(useDarkTheme) {
+        if (useDarkTheme) {
             setTheme(R.style.AppTheme_Dark);
         }
         super.onCreate(savedInstanceState);
@@ -25,7 +26,9 @@ public class turnNumber extends AppCompatActivity {
 
         //Gestion du groupe radio de nombre de tours
         int radioButtonSelected = preferences.getInt("turnNumber", 3);
+        Log.d("Radio button", "" + radioButtonSelected);
         this.setRadioChecked(radioButtonSelected);
+
         Button btnOk = (Button) findViewById(R.id.btnTurnOK);
         final RadioGroup radioTurnGroup = (RadioGroup) findViewById(R.id.radioTurnGroup);
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +37,7 @@ public class turnNumber extends AppCompatActivity {
                 int id = radioTurnGroup.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(id);
                 int value = 1;
-                switch (radioButton.getText().toString()){
+                switch (radioButton.getText().toString()) {
                     case "1":
                         value = 1;
                         break;
@@ -61,9 +64,10 @@ public class turnNumber extends AppCompatActivity {
     }
 
     //Met à jour le radio
-    private void setRadioChecked(int value){
+    private void setRadioChecked(int value) {
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioTurnGroup);
-        int radioButtonId = getResources().getIdentifier("R.id.radioButton"+value,"id",getPackageName());
+        int radioButtonId = getResources().getIdentifier("radioButton" + value, "id", getPackageName());
+        Log.d("Radio button id", "" + radioButtonId);
         radioGroup.check(radioButtonId);
     }
 }

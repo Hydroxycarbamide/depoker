@@ -31,7 +31,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="112dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/roll"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,40 +44,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@null"
-            android:textOff="@null" />
+            android:textOff="@null"
+            android:textOn="@null" />
 
         <ToggleButton
             android:id="@+id/die2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@null"
-            android:textOff="@null"/>
+            android:textOff="@null"
+            android:textOn="@null" />
 
         <ToggleButton
             android:id="@+id/die3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@null"
-            android:textOff="@null"/>
+            android:textOff="@null"
+            android:textOn="@null" />
 
         <ToggleButton
             android:id="@+id/die4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@null"
-            android:textOff="@null" />
+            android:textOff="@null"
+            android:textOn="@null" />
 
         <ToggleButton
             android:id="@+id/die5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textOn="@null"
-            android:textOff="@null" />
+            android:textOff="@null"
+            android:textOn="@null" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
