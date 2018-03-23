@@ -38,4 +38,5 @@
     <string name="fiveKind">Five of a kind</string>
     <string name="light">Night mode...</string>
     <string name="changeNumberTurn">Change the number of turn</string>
+    <string name="roll">Roll the dice</string>
 </resources>

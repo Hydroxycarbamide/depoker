@@ -70,6 +70,8 @@ public class Accueil extends AppCompatActivity {
             public void onClick(View view) {
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.sound);
                 mp.start();
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

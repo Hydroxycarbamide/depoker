@@ -24,12 +24,11 @@ public class turnNumber extends AppCompatActivity {
         setContentView(R.layout.activity_turn_number);
 
         //Gestion du groupe radio de nombre de tours
-
-
+        int radioButtonSelected = preferences.getInt("turnNumber", 3);
+        this.setRadioChecked(radioButtonSelected);
         Button btnOk = (Button) findViewById(R.id.btnTurnOK);
         final RadioGroup radioTurnGroup = (RadioGroup) findViewById(R.id.radioTurnGroup);
         btnOk.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 int id = radioTurnGroup.getCheckedRadioButtonId();
@@ -59,5 +58,12 @@ public class turnNumber extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("prefs", MODE_PRIVATE).edit();
         editor.putInt("turnNumber", value);
         editor.commit();
+    }
+
+    //Met à jour le radio
+    private void setRadioChecked(int value){
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioTurnGroup);
+        int radioButtonId = getResources().getIdentifier("R.id.radioButton"+value,"id",getPackageName());
+        radioGroup.check(radioButtonId);
     }
 }
