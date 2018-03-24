@@ -39,4 +39,7 @@
     <string name="won">a gagné !</string>
     <string name="noOne">Persone n\'</string>
     <string name="playAgain">Voulez-vous jouer une autre partie?</string>
+    <string name="next">Joueur suivant</string>
+    <string name="end">Fin</string>
+    <string name="turn">tour</string>
 </resources>
