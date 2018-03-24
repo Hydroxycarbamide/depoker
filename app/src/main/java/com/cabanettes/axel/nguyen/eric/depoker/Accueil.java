@@ -20,14 +20,12 @@ public class Accueil extends AppCompatActivity {
     //Stockage BDD
     public static DatabaseHandler db;
 
-    private AlertDialog alertDialog1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("dark_theme", false);
 
-        if(useDarkTheme) {
+        if (useDarkTheme) {
             setTheme(R.style.AppTheme_Dark_NoActionBar);
         }
         super.onCreate(savedInstanceState);
@@ -75,8 +73,6 @@ public class Accueil extends AppCompatActivity {
         });
 
 
-
-
     }
 
     private void printLog() {
@@ -93,30 +89,36 @@ public class Accueil extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("Result Code", ""+resultCode);
-        Log.d("Request Code", ""+requestCode);
-        if(requestCode == REQUEST_CODE){
-            if(resultCode == RESULT_OK){
-                Log.d("Everything is","OK");
-                int winner = data.getIntExtra("winner",0);
-                //victoryDialog(winner);
+        Log.d("Result Code", "" + resultCode);
+        Log.d("Request Code", "" + requestCode);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Log.d("Everything is", "OK");
+                int winner = data.getIntExtra("winner", 0);
+                victoryDialog(winner);
 
             }
         }
     }
 
-    private void victoryDialog(int playerNum){
-        Log.d("Dialog","Starting...");
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
-        String player = getResources().getString(R.string.player);
-        builder1.setMessage(player+playerNum);
+    private void victoryDialog(int playerNum) {
+        Log.d("Dialog", "Starting...");
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(Accueil.this);
+        String winner = "Personne n'";
+        if(playerNum != 0) {
+            Joueur joueur = db.getJoueur(playerNum);
+            winner = joueur.getName()+" ";
+        }
+        builder1.setTitle(winner + "a gagné !");
+        builder1.setMessage("Voulez-vous rejouer ?");
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
                 "Yes",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivityForResult(intent, REQUEST_CODE);
                     }
                 });
 
