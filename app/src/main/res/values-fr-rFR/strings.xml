@@ -35,4 +35,5 @@
     <string name="light">Mode nuit...</string>
     <string name="changeNumberTurn">Changer le nombre de tours</string>
     <string name="roll">Lancer les dés</string>
+    <string name="player">Joueur</string>
 </resources>

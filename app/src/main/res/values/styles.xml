@@ -9,7 +9,7 @@
         <item name="lightbulbtoggle">@drawable/ic_action_lightbulbtoggleon</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -26,7 +26,7 @@
         <item name="lightbulbtoggle">@drawable/ic_action_lightbulbtoggleoff</item>
     </style>
 
-    <style name="AppTheme.Dark.NoActionBar">
+    <style name="AppTheme.Dark.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

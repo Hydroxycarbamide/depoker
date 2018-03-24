@@ -52,18 +52,6 @@ public class Accueil extends AppCompatActivity {
         TextView t = (TextView) findViewById(R.id.versus);
         t.setText(player1 + " vs. " + player2);
 
-
-        //Bouton settings
-        Button btnSettings = (Button) findViewById(R.id.btnOption);
-        btnSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), SettingsActivity.class);
-                startActivityForResult(intent,REQUEST_CODE);
-            }
-        });
-
-
         //Bouton play
         Button btnPlay = (Button) findViewById(R.id.btnPlay);
         btnPlay.setOnClickListener(new View.OnClickListener() {
@@ -72,9 +60,22 @@ public class Accueil extends AppCompatActivity {
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.sound);
                 mp.start();
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
+
+        //Bouton settings
+        Button btnSettings = (Button) findViewById(R.id.btnOption);
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SettingsActivity.class);
                 startActivity(intent);
             }
         });
+
+
+
 
     }
 
@@ -91,19 +92,43 @@ public class Accueil extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request we're responding to
-        if (requestCode == REQUEST_CODE) {
-            // Make sure the request was successful
-            switch (resultCode){
-                case 1:
-                    break;
-                case 2:
-                    break;
-                default:
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("Result Code", ""+resultCode);
+        Log.d("Request Code", ""+requestCode);
+        if(requestCode == REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+                Log.d("Everything is","OK");
+                int winner = data.getIntExtra("winner",0);
+                //victoryDialog(winner);
 
             }
         }
     }
 
+    private void victoryDialog(int playerNum){
+        Log.d("Dialog","Starting...");
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getApplicationContext());
+        String player = getResources().getString(R.string.player);
+        builder1.setMessage(player+playerNum);
+        builder1.setCancelable(true);
 
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
 }
