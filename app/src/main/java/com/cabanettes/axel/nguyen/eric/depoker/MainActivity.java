@@ -3,6 +3,7 @@ package com.cabanettes.axel.nguyen.eric.depoker;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.support.v4.content.ContextCompat;
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String namePlayer1 = Accueil.db.getJoueur(1).getName();
+        TextView result=(TextView) findViewById(R.id.result);
+        result.setText(namePlayer1+" "+getResources().getString(R.string.turn));
 
         //Initialisation des buttons et dés
         Button btn = (Button) findViewById(R.id.roll);
@@ -82,68 +87,78 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            //Gestion du son
-            MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.sound);
-            mp.start();
+            //ColorStateList oldColors =  result.getTextColors();
+            //result.setTextColor(oldColors);
+            String namePlayer2 = Accueil.db.getJoueur(2).getName();
+            Button btn = (Button) findViewById(R.id.roll);
+            if((String)btn.getText()== getResources().getString(R.string.next)) {
+                this.result.setText(namePlayer2+" "+ getResources().getString(R.string.turn));
+                btn.setText(R.string.roll);
+            }else if(btn.getText()== getResources().getString(R.string.end)) {
+                Intent intent=new Intent();
+                if(player1>player2){
+                    intent.putExtra("winner",1);
+                }else if(player1<player2){
+                    intent.putExtra("winner",2);
+                } else intent.putExtra("winner",0);
+                setResult(RESULT_OK,intent);
+                finish();
+            }else {
+                //Gestion du son
+                MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.sound);
+                mp.start();
 
-            //Gestion du jeu
-            result = (TextView) findViewById(R.id.result);
-            for (int j = 1; j < 6; j++) {
-                ToggleButton die = (ToggleButton) findViewById(getResources().getIdentifier("die" + j, "id", getPackageName()));
-                if (die.isChecked() == false) {
-                    Random r = new Random();
-                    int v = r.nextInt(7 - 1) + 1;
-                    this.dice[j - 1] = v;
+                //Gestion du jeu
+                result = (TextView) findViewById(R.id.result);
+                for (int j = 1; j < 6; j++) {
+                    ToggleButton die = (ToggleButton) findViewById(getResources().getIdentifier("die" + j, "id", getPackageName()));
+                    if (die.isChecked() == false) {
+                        Random r = new Random();
+                        int v = r.nextInt(7 - 1) + 1;
+                        this.dice[j - 1] = v;
+                    }
                 }
-            }
 
-            this.die1.setText("" + dice[0]);
-            this.die2.setText("" + dice[1]);
-            this.die3.setText("" + dice[2]);
-            this.die4.setText("" + dice[3]);
-            this.die5.setText("" + dice[4]);
-            changeImage(die1);
-            changeImage(die2);
-            changeImage(die3);
-            changeImage(die4);
-            changeImage(die5);
-            this.turns++;
-            this.die1.setChecked(false);
-            this.die2.setChecked(false);
-            this.die3.setChecked(false);
-            this.die4.setChecked(false);
-            this.die5.setChecked(false);
-            if (turns == maxturns) {
-                this.die1.setEnabled(false);
-                this.die2.setEnabled(false);
-                this.die3.setEnabled(false);
-                this.die4.setEnabled(false);
-                this.die5.setEnabled(false);
-                Button btn = (Button) findViewById(R.id.roll);
-                //btn.setEnabled(false);
-                handResult(result);
-                if (player2 == -1) {
-                    //change to player 2
-                    this.turns=0;
-                    this.result.setText("Player 2 turn");
+                this.die1.setText("" + dice[0]);
+                this.die2.setText("" + dice[1]);
+                this.die3.setText("" + dice[2]);
+                this.die4.setText("" + dice[3]);
+                this.die5.setText("" + dice[4]);
+                changeImage(die1);
+                changeImage(die2);
+                changeImage(die3);
+                changeImage(die4);
+                changeImage(die5);
+                this.turns++;
+                this.die1.setChecked(false);
+                this.die2.setChecked(false);
+                this.die3.setChecked(false);
+                this.die4.setChecked(false);
+                this.die5.setChecked(false);
+                if (turns == maxturns) {
+                    this.die1.setEnabled(false);
+                    this.die2.setEnabled(false);
+                    this.die3.setEnabled(false);
+                    this.die4.setEnabled(false);
+                    this.die5.setEnabled(false);
+
+                    //btn.setEnabled(false);
+                    handResult(result);
+                    if (player2 == -1) {
+                        //change to player 2
+                        this.turns=0;
+                        btn.setText(R.string.next);
+                    } else {
+                        btn.setText(R.string.end);
+                    }
                 } else {
-                  //return winner/egality
-                    Intent intent=new Intent();
-                    if(player1>player2){
-                        intent.putExtra("winner",1);
-                    }else if(player1<player2){
-                        intent.putExtra("winner",2);
-                    } else intent.putExtra("winner",0);
-                    setResult(RESULT_OK,intent);
-                    finish();
+                    result.setText(getResources().getString(R.string.chooseDice));
+                    this.die1.setEnabled(true);
+                    this.die2.setEnabled(true);
+                    this.die3.setEnabled(true);
+                    this.die4.setEnabled(true);
+                    this.die5.setEnabled(true);
                 }
-            } else {
-                result.setText(getResources().getString(R.string.chooseDice));
-                this.die1.setEnabled(true);
-                this.die2.setEnabled(true);
-                this.die3.setEnabled(true);
-                this.die4.setEnabled(true);
-                this.die5.setEnabled(true);
             }
         }
 
