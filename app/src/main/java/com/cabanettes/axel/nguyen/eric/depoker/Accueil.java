@@ -104,13 +104,13 @@ public class Accueil extends AppCompatActivity {
     private void victoryDialog(int playerNum) {
         Log.d("Dialog", "Starting...");
         AlertDialog.Builder builder1 = new AlertDialog.Builder(Accueil.this);
-        String winner = "Personne n'";
+        String winner = getResources().getString(R.string.noOne);
         if(playerNum != 0) {
             Joueur joueur = db.getJoueur(playerNum);
             winner = joueur.getName()+" ";
         }
-        builder1.setTitle(winner + "a gagné !");
-        builder1.setMessage("Voulez-vous rejouer ?");
+        builder1.setTitle(winner + getResources().getString(R.string.won));
+        builder1.setMessage(getResources().getString(R.string.playAgain));
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
