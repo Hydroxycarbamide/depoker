@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.support.v4.content.ContextCompat;
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         ToggleButton die3;
         ToggleButton die4;
         ToggleButton die5;
-        TextView result;
+        TextView result = (TextView) findViewById(R.id.result);
+        ColorStateList oldColors;
         int turns;
         int maxturns;
 
@@ -83,15 +85,17 @@ public class MainActivity extends AppCompatActivity {
             this.die4 = die4;
             this.die5 = die5;
             maxturns = turnNumber;
+            oldColors =  result.getTextColors();
+            result.setTextColor(Color.parseColor("#03A9F4"));
         }
 
         @Override
         public void onClick(View view) {
-            //ColorStateList oldColors =  result.getTextColors();
-            //result.setTextColor(oldColors);
+            result.setTextColor(oldColors);
             String namePlayer2 = Accueil.db.getJoueur(2).getName();
             Button btn = (Button) findViewById(R.id.roll);
             if((String)btn.getText()== getResources().getString(R.string.next)) {
+                result.setTextColor(Color.parseColor("#03A9F4"));
                 this.result.setText(namePlayer2+" "+ getResources().getString(R.string.turn));
                 btn.setText(R.string.roll);
             }else if(btn.getText()== getResources().getString(R.string.end)) {
@@ -109,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 mp.start();
 
                 //Gestion du jeu
-                result = (TextView) findViewById(R.id.result);
                 for (int j = 1; j < 6; j++) {
                     ToggleButton die = (ToggleButton) findViewById(getResources().getIdentifier("die" + j, "id", getPackageName()));
                     if (die.isChecked() == false) {
