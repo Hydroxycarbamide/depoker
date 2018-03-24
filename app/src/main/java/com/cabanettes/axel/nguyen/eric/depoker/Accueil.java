@@ -56,7 +56,17 @@ public class Accueil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.sound);
-                mp.start();
+                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    public void onPrepared(MediaPlayer player) {
+                        player.start();
+                    }
+                });
+
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+                    }
+                });
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
                 startActivityForResult(intent, REQUEST_CODE);
             }
@@ -114,7 +124,7 @@ public class Accueil extends AppCompatActivity {
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
-                "Yes",
+                getResources().getString(R.string.Yes),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -123,7 +133,7 @@ public class Accueil extends AppCompatActivity {
                 });
 
         builder1.setNegativeButton(
-                "No",
+                getResources().getString(R.string.No),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();

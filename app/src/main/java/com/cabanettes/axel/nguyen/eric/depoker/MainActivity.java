@@ -3,7 +3,9 @@ package com.cabanettes.axel.nguyen.eric.depoker;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("dark_theme", false);
 
-        if(useDarkTheme) {
+        if (useDarkTheme) {
             setTheme(R.style.AppTheme_Dark_NoActionBar);
         }
 
@@ -43,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String namePlayer1 = Accueil.db.getJoueur(1).getName();
-        TextView result=(TextView) findViewById(R.id.result);
-        result.setText(namePlayer1+" "+getResources().getString(R.string.turn));
+        TextView result = (TextView) findViewById(R.id.result);
+        result.setText(namePlayer1 + " " + getResources().getString(R.string.turn));
 
         //Initialisation des buttons et dés
         Button btn = (Button) findViewById(R.id.roll);
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         die4.setEnabled(false);
         ToggleButton die5 = (ToggleButton) findViewById(R.id.die5);
         die5.setEnabled(false);
-        int turnNumber = preferences.getInt("turnNumber",3);
+        int turnNumber = preferences.getInt("turnNumber", 3);
         btn.setOnClickListener(new RollBtnListener(turnNumber, die1, die2, die3, die4, die5));
     }
 
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         int maxturns;
 
 
-
         public RollBtnListener(int turnNumber, ToggleButton die1, ToggleButton die2, ToggleButton die3, ToggleButton die4, ToggleButton die5) {
             this.dice = new int[5];
             this.turns = 0;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             this.die4 = die4;
             this.die5 = die5;
             maxturns = turnNumber;
-            oldColors =  result.getTextColors();
+            oldColors = result.getTextColors();
             result.setTextColor(Color.parseColor("#03A9F4"));
         }
 
@@ -94,22 +95,33 @@ public class MainActivity extends AppCompatActivity {
             result.setTextColor(oldColors);
             String namePlayer2 = Accueil.db.getJoueur(2).getName();
             Button btn = (Button) findViewById(R.id.roll);
-            if((String)btn.getText()== getResources().getString(R.string.next)) {
+            if ((String) btn.getText() == getResources().getString(R.string.next)) {
                 result.setTextColor(Color.parseColor("#03A9F4"));
-                this.result.setText(namePlayer2+" "+ getResources().getString(R.string.turn));
+                this.result.setText(namePlayer2 + " " + getResources().getString(R.string.turn));
                 btn.setText(R.string.roll);
-            }else if(btn.getText()== getResources().getString(R.string.end)) {
-                Intent intent=new Intent();
-                if(player1>player2){
-                    intent.putExtra("winner",1);
-                }else if(player1<player2){
-                    intent.putExtra("winner",2);
-                } else intent.putExtra("winner",0);
-                setResult(RESULT_OK,intent);
+            } else if (btn.getText() == getResources().getString(R.string.end)) {
+                Intent intent = new Intent();
+                if (player1 > player2) {
+                    intent.putExtra("winner", 1);
+                } else if (player1 < player2) {
+                    intent.putExtra("winner", 2);
+                } else intent.putExtra("winner", 0);
+                setResult(RESULT_OK, intent);
                 finish();
-            }else {
+            } else {
                 //Gestion du son
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.sound);
+                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    public void onPrepared(MediaPlayer player) {
+                        player.start();
+                    }
+                });
+
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+                    }
+                });
                 mp.start();
 
                 //Gestion du jeu
@@ -149,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     handResult(result);
                     if (player2 == -1) {
                         //change to player 2
-                        this.turns=0;
+                        this.turns = 0;
                         btn.setText(R.string.next);
                     } else {
                         btn.setText(R.string.end);
@@ -286,13 +298,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    
 
-    private void changeImage(ToggleButton button){
+    private void changeImage(ToggleButton button) {
         button.setHeight(button.getMeasuredWidth());
         ImageSpan imageSpan;
-        Drawable diePic = getResources().getDrawable(R.drawable.dice1);;
-        switch (button.getText().toString()){
+        Drawable diePic = getResources().getDrawable(R.drawable.dice1);
+        switch (button.getText().toString()) {
             case "1":
                 diePic = getResources().getDrawable(R.drawable.dice1);
                 break;
@@ -312,12 +323,42 @@ public class MainActivity extends AppCompatActivity {
                 diePic = getResources().getDrawable(R.drawable.dice6);
                 break;
         }
-        diePic.setBounds(0, 0, button.getMeasuredWidth()-96, button.getMeasuredWidth()-96);
+        diePic.setBounds(0, 0, button.getMeasuredWidth() - 96, button.getMeasuredWidth() - 96);
         imageSpan = new ImageSpan(diePic);
         SpannableString content = new SpannableString("X");
         content.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         button.setText(content);
         button.setTextOn(content);
         button.setTextOff(content);
+    }
+
+    //Gestion du blocage de la rotation d'écran
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        switch (newConfig.orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+                lockScreenRotation(Configuration.ORIENTATION_PORTRAIT);
+                break;
+            case Configuration.ORIENTATION_LANDSCAPE:
+                lockScreenRotation(Configuration.ORIENTATION_LANDSCAPE);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void lockScreenRotation(int orientation) {
+        switch (orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+                this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                break;
+            case Configuration.ORIENTATION_LANDSCAPE:
+                this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                break;
+            default:
+                this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                break;
+        }
     }
 }

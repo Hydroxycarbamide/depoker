@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class turnNumber extends AppCompatActivity {
 
@@ -49,6 +50,7 @@ public class turnNumber extends AppCompatActivity {
                         break;
                 }
                 changeValue(value);
+                Toast.makeText(view.getContext(), getResources().getIdentifier("changedTurn","string",view.getContext().getPackageName())+value, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -61,6 +63,7 @@ public class turnNumber extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("prefs", MODE_PRIVATE).edit();
         editor.putInt("turnNumber", value);
         editor.commit();
+
     }
 
     //Met à jour le radio

@@ -41,7 +41,9 @@
             android:parentActivityName=".SettingsActivity"/>
         <activity android:name=".MainActivity"
             android:parentActivityName=".Accueil"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
     </application>
 
 </manifest>

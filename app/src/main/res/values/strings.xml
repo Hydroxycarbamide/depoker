@@ -41,9 +41,13 @@
     <string name="roll">Roll the dice</string>
     <string name="player">Player</string>
     <string name="won">won !</string>
-    <string name="noOne">Nobody</string>
+    <string name="noOne">"Nobody "</string>
     <string name="playAgain">Do you want to play again ?</string>
     <string name="next">Next player</string>
     <string name="end">End</string>
     <string name="turn">turn</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="launchApp">Please launch the game again for full theme application</string>
+    <string name="changedTurn">Turn\'s number changed:</string>
 </resources>

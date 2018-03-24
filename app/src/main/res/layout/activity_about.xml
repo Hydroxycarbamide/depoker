@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/aboutText"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textSize="@dimen/sm"
         app:layout_constraintBottom_toTopOf="@+id/learnMore"
         app:layout_constraintEnd_toEndOf="parent"

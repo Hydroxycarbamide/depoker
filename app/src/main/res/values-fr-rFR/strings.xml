@@ -42,4 +42,8 @@
     <string name="next">Joueur suivant</string>
     <string name="end">Fin</string>
     <string name="turn">tour</string>
+    <string name="Yes">Oui</string>
+    <string name="No">Non</string>
+    <string name="launchApp">Veuillez redémarrer le jeu pour l\'application complète du thème</string>
+    <string name="changedTurn">Nombre de tours changé :</string>
 </resources>
