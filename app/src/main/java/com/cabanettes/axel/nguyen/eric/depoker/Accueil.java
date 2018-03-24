@@ -16,6 +16,7 @@ import java.util.List;
 
 public class Accueil extends AppCompatActivity {
 
+    static final int REQUEST_CODE = 1;
     //Stockage BDD
     public static DatabaseHandler db;
 
@@ -58,7 +59,7 @@ public class Accueil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SettingsActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,REQUEST_CODE);
             }
         });
 
@@ -85,6 +86,22 @@ public class Accueil extends AppCompatActivity {
         for (Joueur joueur : joueurs) {
             String log = "Id: " + joueur.getIdJoueur() + " ,Name: " + joueur.getName();
             Log.d("Name: ", log);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == REQUEST_CODE) {
+            // Make sure the request was successful
+            switch (resultCode){
+                case 1:
+                    break;
+                case 2:
+                    break;
+                default:
+
+            }
         }
     }
 

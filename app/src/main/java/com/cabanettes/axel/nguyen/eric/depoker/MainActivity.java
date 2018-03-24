@@ -1,5 +1,6 @@
 package com.cabanettes.axel.nguyen.eric.depoker;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -105,12 +106,6 @@ public class MainActivity extends AppCompatActivity {
             changeImage(die3);
             changeImage(die4);
             changeImage(die5);
-            /*
-            * Bundle extras = getIntent().getExtras();
-            * if(extras != null){
-            *   String s = (String) extras.get("numberTurn");
-            *   maxturns =
-            * }*/
             this.turns++;
             this.die1.setChecked(false);
             this.die2.setChecked(false);
@@ -124,12 +119,21 @@ public class MainActivity extends AppCompatActivity {
                 this.die4.setEnabled(false);
                 this.die5.setEnabled(false);
                 Button btn = (Button) findViewById(R.id.roll);
-                btn.setEnabled(false);
+                //btn.setEnabled(false);
                 handResult(result);
                 if (player2 == -1) {
                     //change to player 2
+                    this.turns=0;
+                    this.result.setText("Player 2 turn");
                 } else {
-                    //return winner/egality
+                  //return winner/egality
+                    Intent intent=new Intent();
+                    if(player1>player2){
+                      setResult(1,intent);
+                    }else if(player1<player2){
+                      setResult(2,intent);
+                    } else setResult(0,intent);
+                    finish();
                 }
             } else {
                 result.setText(getResources().getString(R.string.chooseDice));
@@ -260,16 +264,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public enum Hands {
-        BUST,
-        ONEPAIR,
-        TWOPAIR,
-        THREEOFAKIND,
-        STRAIGHT,
-        FULLHOUSE,
-        FOUROFAKIND,
-        FIVEOFAKIND
-    }
+    
 
     private void changeImage(ToggleButton button){
         button.setHeight(button.getMeasuredWidth());
@@ -304,5 +299,3 @@ public class MainActivity extends AppCompatActivity {
         button.setTextOff(content);
     }
 }
-
-
