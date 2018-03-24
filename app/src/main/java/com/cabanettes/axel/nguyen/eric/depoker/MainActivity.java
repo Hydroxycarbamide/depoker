@@ -1,5 +1,7 @@
 package com.cabanettes.axel.nguyen.eric.depoker;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -118,21 +120,22 @@ public class MainActivity extends AppCompatActivity {
                 this.die4.setEnabled(false);
                 this.die5.setEnabled(false);
                 Button btn = (Button) findViewById(R.id.roll);
-                btn.setEnabled(false);
+                //btn.setEnabled(false);
                 handResult(result);
                 if (player2 == -1) {
                     //change to player 2
-                    this.turn=0
-                    this.result.setText("Player 2 turn")//translation string
+                    this.turns=0;
+                    this.result.setText("Player 2 turn");
                 } else {
-                    //return winner/egality
+                  //return winner/egality
                     Intent intent=new Intent();
                     if(player1>player2){
-                        setResult(1,intent);
+                        intent.putExtra("winner",1);
                     }else if(player1<player2){
-                        setResult(2,intent);
-                    } else setResult(0,intent);
-                    finish()
+                        intent.putExtra("winner",2);
+                    } else intent.putExtra("winner",0);
+                    setResult(RESULT_OK,intent);
+                    finish();
                 }
             } else {
                 result.setText(getResources().getString(R.string.chooseDice));
@@ -144,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
+        //Gestion de du resultat
         public void handResult(TextView result) {
             List<Integer> sorteddice = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
@@ -183,10 +188,9 @@ public class MainActivity extends AppCompatActivity {
                     result.setText(getResources().getString(R.string.fiveKind));
                     break;
             }
-
-
         }
 
+        //Vérification d'une suite de 5 dés
         public boolean straight(List<Integer> a) {
             for (int i = 0; i < 4; i++) {
                 if (a.get(i) + 1 != a.get(i + 1)) {
@@ -196,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        //Gestion de la détection du résultat de la main
         public Hands handtest(List<Integer> a) {
             int[] counts = new int[6];
             for (int i = 0; i < 6; i++) {
@@ -263,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    
 
     private void changeImage(ToggleButton button){
         button.setHeight(button.getMeasuredWidth());
