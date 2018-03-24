@@ -1,6 +1,5 @@
 package com.cabanettes.axel.nguyen.eric.depoker;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -119,21 +118,21 @@ public class MainActivity extends AppCompatActivity {
                 this.die4.setEnabled(false);
                 this.die5.setEnabled(false);
                 Button btn = (Button) findViewById(R.id.roll);
-                //btn.setEnabled(false);
+                btn.setEnabled(false);
                 handResult(result);
                 if (player2 == -1) {
                     //change to player 2
-                    this.turns=0;
-                    this.result.setText("Player 2 turn");
+                    this.turn=0
+                    this.result.setText("Player 2 turn")//translation string
                 } else {
-                  //return winner/egality
+                    //return winner/egality
                     Intent intent=new Intent();
                     if(player1>player2){
-                      setResult(1,intent);
+                        setResult(1,intent);
                     }else if(player1<player2){
-                      setResult(2,intent);
+                        setResult(2,intent);
                     } else setResult(0,intent);
-                    finish();
+                    finish()
                 }
             } else {
                 result.setText(getResources().getString(R.string.chooseDice));
@@ -264,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    
+
 
     private void changeImage(ToggleButton button){
         button.setHeight(button.getMeasuredWidth());
