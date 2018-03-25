@@ -303,31 +303,32 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeImage(ToggleButton button) {
         button.setHeight(button.getMeasuredWidth());
-        ImageSpan imageSpan;
-        Drawable diePic = getResources().getDrawable(R.drawable.dice1);
+        Drawable diePic;
         switch (button.getText().toString()) {
             case "1":
-                diePic = getResources().getDrawable(R.drawable.dice1);
+                diePic = ContextCompat.getDrawable(this,R.drawable.dice1);
                 break;
             case "2":
-                diePic = getResources().getDrawable(R.drawable.dice2);
+                diePic = ContextCompat.getDrawable(this,R.drawable.dice2);
                 break;
             case "3":
-                diePic = getResources().getDrawable(R.drawable.dice3);
+                diePic = ContextCompat.getDrawable(this,R.drawable.dice3);
                 break;
             case "4":
-                diePic = getResources().getDrawable(R.drawable.dice4);
+                diePic = ContextCompat.getDrawable(this,R.drawable.dice4);
                 break;
             case "5":
-                diePic = getResources().getDrawable(R.drawable.dice5);
+                diePic = ContextCompat.getDrawable(this,R.drawable.dice5);
                 break;
             case "6":
-                diePic = getResources().getDrawable(R.drawable.dice6);
+                diePic = ContextCompat.getDrawable(this,R.drawable.dice6);
                 break;
+            default:
+                diePic = ContextCompat.getDrawable(this,android.R.drawable.ic_menu_info_details);
         }
         diePic.setBounds(0, 0, button.getMeasuredWidth() - 96, button.getMeasuredWidth() - 96);
-        imageSpan = new ImageSpan(diePic);
-        SpannableString content = new SpannableString("X");
+        ImageSpan imageSpan = new ImageSpan(diePic);
+        SpannableString content = new SpannableString(button.getText().toString());
         content.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         button.setText(content);
         button.setTextOn(content);
