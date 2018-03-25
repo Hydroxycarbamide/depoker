@@ -105,13 +105,13 @@ public class Accueil extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Log.d("Everything is", "OK");
                 int winner = data.getIntExtra("winner", 0);
-                victoryDialog(winner);
+                victoryDialog(winner, data.getIntExtra("valuePlayer1",0), data.getIntExtra("valuePlayer2",0));
 
             }
         }
     }
 
-    private void victoryDialog(int playerNum) {
+    private void victoryDialog(int playerNum, int valuePlayer1,int valuePlayer2) {
         Log.d("Dialog", "Starting...");
         AlertDialog.Builder builder1 = new AlertDialog.Builder(Accueil.this);
         String winner = getResources().getString(R.string.noOne);
@@ -120,7 +120,8 @@ public class Accueil extends AppCompatActivity {
             winner = joueur.getName()+" ";
         }
         builder1.setTitle(winner + getResources().getString(R.string.won));
-        builder1.setMessage(getResources().getString(R.string.playAgain));
+        builder1.setMessage(getHandtoString(valuePlayer1)+" vs. "+getHandtoString(valuePlayer2)+"\n"
+                +getResources().getString(R.string.playAgain));
         builder1.setCancelable(true);
 
         builder1.setPositiveButton(
@@ -143,4 +144,36 @@ public class Accueil extends AppCompatActivity {
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+
+    private String getHandtoString(int value){
+        String valueReturn = "NoFound";
+        switch (value) {
+            case 0:
+                valueReturn = getResources().getString(R.string.bust);
+            break;
+            case 1:
+                valueReturn = getResources().getString(R.string.onePair);
+                break;
+            case 2:
+                valueReturn = getResources().getString(R.string.twoPair);
+                break;
+            case 3:
+                valueReturn = getResources().getString(R.string.threeKind);
+                break;
+            case 4:
+                valueReturn = getResources().getString(R.string.straight);
+                break;
+            case 5:
+                valueReturn = getResources().getString(R.string.fullHouse);
+                break;
+            case 6:
+                valueReturn = getResources().getString(R.string.fourKind);
+                break;
+            case 7:
+                valueReturn = getResources().getString(R.string.fiveKind);
+                break;
+        }
+        return valueReturn;
+    }
+
 }

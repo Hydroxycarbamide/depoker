@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (player1 < player2) {
                     intent.putExtra("winner", 2);
                 } else intent.putExtra("winner", 0);
+                intent.putExtra("valuePlayer1",player1);
+                intent.putExtra("valuePlayer2",player2);
                 setResult(RESULT_OK, intent);
                 finish();
             } else {
