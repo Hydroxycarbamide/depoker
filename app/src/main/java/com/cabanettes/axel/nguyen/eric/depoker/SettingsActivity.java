@@ -115,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton view, boolean isChecked) {
                 toggleTheme(isChecked);
-                Toast.makeText(view.getContext(), getResources().getIdentifier("launchApp","string",view.getContext().getPackageName()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), getResources().getString(R.string.launchApp), Toast.LENGTH_SHORT).show();
             }
         });
         return true;

@@ -7,7 +7,7 @@
     <string name="enterName">Veuillez entrer les noms des joueurs</string>
     <string name="name">Nom</string>
     <string name="changePlayersName">Changer les noms des joueurs</string>
-    <string name="nameChanged">Noms des joueurs changé</string>
+    <string name="nameChanged">Noms des joueurs changés</string>
     <string name="about">A propos de nous</string>
     <string name="general">Général</string>
     <string name="other">Autres</string>
@@ -26,7 +26,7 @@
     <string name="lang">Change la langue du jeu</string>
     <string name="chooseDice">Choisissez quels dés garder</string>
     <string name="onePair">Une Paire</string>
-    <string name="twoPair">Deux Paire</string>
+    <string name="twoPair">Deux Paires</string>
     <string name="threeKind">Brelan</string>
     <string name="straight">Suite</string>
     <string name="fullHouse">Full</string>
