@@ -50,7 +50,7 @@ public class turnNumber extends AppCompatActivity {
                         break;
                 }
                 changeValue(value);
-                Toast.makeText(view.getContext(), getResources().getIdentifier("changedTurn","string",view.getContext().getPackageName())+value, Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), getResources().getString(R.string.changedTurn)+" "+value, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
