@@ -326,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 diePic = ContextCompat.getDrawable(this,android.R.drawable.ic_menu_info_details);
         }
+        button.setAllCaps(false);
         diePic.setBounds(0, 0, button.getMeasuredWidth() - 96, button.getMeasuredWidth() - 96);
         ImageSpan imageSpan = new ImageSpan(diePic);
         SpannableString content = new SpannableString(button.getText().toString());
