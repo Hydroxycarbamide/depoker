@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Initialisation du Dark theme
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("dark_theme", false);
-
         if (useDarkTheme) {
             setTheme(R.style.AppTheme_Dark_NoActionBar);
         }
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new RollBtnListener(turnNumber, die1, die2, die3, die4, die5));
     }
 
+    //Ecouteur pour le bouton Roll the dice
     public class RollBtnListener implements View.OnClickListener {
         private int[] dice;
         ToggleButton die1;
@@ -301,6 +302,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //Fonction permettant de changer l'image des dés
     private void changeImage(ToggleButton button) {
         button.setHeight(button.getMeasuredWidth());
         Drawable diePic;
@@ -351,7 +353,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
     private void lockScreenRotation(int orientation) {
         switch (orientation) {
             case Configuration.ORIENTATION_PORTRAIT:

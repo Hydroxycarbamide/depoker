@@ -34,6 +34,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    //CREATE
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_JOUEUR_TABLE = "CREATE TABLE " + TABLE_JOUEUR + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME + " STRING" + ")";
@@ -47,6 +48,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    //INSERT
     public void addJoueur(Joueur joueur) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -59,7 +61,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    //Requête select par id
+    //Requête SELECT par id
     //SELECT * FROM JOUEUR WHERE idJoueur = id
     public Joueur getJoueur(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -78,6 +80,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return joueur;
     }
 
+    //Selectionne tous les joueurs et informations
     //SELECT * FROM JOUEUR
     public List<Joueur> getAllJoueurs() {
         List<Joueur> joueurList = new ArrayList<Joueur>();
@@ -112,14 +115,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //COUNT
-    /*public int getJoueursCount() {
-        String countQuery = "SELECT * FROM " + TABLE_JOUEUR;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
-        return cursor.getCount();
-    }*/
-
     public int getJoueursCount() {
         String countQuery = "SELECT COUNT(*) FROM " + TABLE_JOUEUR;
         SQLiteDatabase db = this.getReadableDatabase();

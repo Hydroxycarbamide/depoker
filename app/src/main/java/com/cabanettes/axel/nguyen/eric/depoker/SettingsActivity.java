@@ -24,23 +24,15 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Initialisation du Dark theme
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME, false);
-
         if(useDarkTheme) {
             setTheme(R.style.AppTheme_Dark);
         }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingslayout);
-
-        //Intent  test
-        Bundle extras = getIntent().getExtras();
-        if(extras!=null)
-        {
-            Integer numberTurn =(Integer) extras.get("numberTurn");
-            Log.d("Number of turn",""+numberTurn.toString());
-        }
 
         //Liste concernant la categorie GENERAL
         ListView listeGeneral = (ListView) findViewById(R.id.generalList);
@@ -91,6 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+    //Gestion de l'action du toggleButton
     private void toggleTheme(boolean darkTheme) {
         SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
         editor.putBoolean(PREF_DARK_THEME, darkTheme);
@@ -106,7 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
 
-        //Gestion du switch de l'actionbar
+        //Gestion du toggle button de l'actionbar
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean(PREF_DARK_THEME, false);
         Switch toggle = (Switch) menu.findItem(R.id.app_bar_switch_light).getActionView().findViewById(R.id.switchLight);

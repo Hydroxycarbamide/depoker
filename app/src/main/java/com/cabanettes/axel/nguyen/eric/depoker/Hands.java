@@ -15,8 +15,4 @@ public enum Hands {
     FULLHOUSE,
     FOUROFAKIND,
     FIVEOFAKIND;
-
-
-
-
 }

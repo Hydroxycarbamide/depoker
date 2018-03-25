@@ -13,12 +13,13 @@ public class nameChanger extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Initialisation du Dark theme
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("dark_theme", false);
-
         if(useDarkTheme) {
             setTheme(R.style.AppTheme_Dark);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_namechanger);
 
@@ -32,6 +33,7 @@ public class nameChanger extends AppCompatActivity {
             }
         });
 
+        //Gestion de l'affichage des joueurs s'ils existent
         if (Accueil.db.getJoueursCount() != 0) {
             EditText e1 = (EditText) findViewById(R.id.editTextPlayer1);
             EditText e2 = (EditText) findViewById(R.id.editTextPlayer2);
@@ -42,6 +44,7 @@ public class nameChanger extends AppCompatActivity {
         }
     }
 
+    //Action du bouton enregistrer
     protected void registerPlayers(View view){
         EditText joueur1 = (EditText) findViewById(R.id.editTextPlayer1);
         EditText joueur2 = (EditText) findViewById(R.id.editTextPlayer2);
@@ -50,6 +53,8 @@ public class nameChanger extends AppCompatActivity {
         Joueur j1 = new Joueur(1,nomJoueur1);
         Joueur j2 = new Joueur(2,nomJoueur2);
 
+        //Création de 2 joueurs s'il n'existent pas encore
+        //Sinon met à jour les noms
         if(Accueil.db.getJoueursCount()==0) {
             Log.d("Insert: ", "Inserting ..");
             Accueil.db.addJoueur(j1);

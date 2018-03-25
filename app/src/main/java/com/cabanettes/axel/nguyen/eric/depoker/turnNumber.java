@@ -16,12 +16,13 @@ public class turnNumber extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Initialisation du Dark theme
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("dark_theme", false);
-
         if (useDarkTheme) {
             setTheme(R.style.AppTheme_Dark);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turn_number);
 

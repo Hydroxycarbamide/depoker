@@ -22,14 +22,16 @@ public class Accueil extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Initialisation du Dark theme
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
         boolean useDarkTheme = preferences.getBoolean("dark_theme", false);
-
         if (useDarkTheme) {
             setTheme(R.style.AppTheme_Dark_NoActionBar);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_accueil);
+
         //Init var
         final String[] values = {"1", "2", "3"};
         //Init BDD
@@ -85,6 +87,7 @@ public class Accueil extends AppCompatActivity {
 
     }
 
+    //Vérification de la bdd
     private void printLog() {
         //Log
         Log.d("Number players:", "" + db.getJoueursCount());
@@ -96,6 +99,7 @@ public class Accueil extends AppCompatActivity {
         }
     }
 
+    //Gestion du startActivityForResult
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -111,6 +115,7 @@ public class Accueil extends AppCompatActivity {
         }
     }
 
+    //Affichage d'une fenêtre après un jeu
     private void victoryDialog(int playerNum, int valuePlayer1,int valuePlayer2) {
         Log.d("Dialog", "Starting...");
         AlertDialog.Builder builder1 = new AlertDialog.Builder(Accueil.this);
@@ -145,6 +150,7 @@ public class Accueil extends AppCompatActivity {
         alert11.show();
     }
 
+    //Retourne un String correspondant à la main obtenu
     private String getHandtoString(int value){
         String valueReturn = "NoFound";
         switch (value) {
