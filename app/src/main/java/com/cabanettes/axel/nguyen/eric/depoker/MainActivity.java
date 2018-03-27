@@ -20,6 +20,8 @@ import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -51,42 +53,26 @@ public class MainActivity extends AppCompatActivity {
 
         //Initialisation des buttons et dés
         Button btn = (Button) findViewById(R.id.roll);
-        ToggleButton die1 = (ToggleButton) findViewById(R.id.die1);
-        die1.setEnabled(false);
-        ToggleButton die2 = (ToggleButton) findViewById(R.id.die2);
-        die2.setEnabled(false);
-        ToggleButton die3 = (ToggleButton) findViewById(R.id.die3);
-        die3.setEnabled(false);
-        ToggleButton die4 = (ToggleButton) findViewById(R.id.die4);
-        die4.setEnabled(false);
-        ToggleButton die5 = (ToggleButton) findViewById(R.id.die5);
-        die5.setEnabled(false);
+        for (int j = 1; j <= 5; j++) {
+            ToggleButton die = (ToggleButton) findViewById(getResources().getIdentifier("die" + j, "id", getPackageName()));
+            die.setEnabled(false);
+        }
         int turnNumber = preferences.getInt("turnNumber", 3);
-        btn.setOnClickListener(new RollBtnListener(turnNumber, die1, die2, die3, die4, die5));
+        btn.setOnClickListener(new RollBtnListener(turnNumber));
     }
 
     //Ecouteur pour le bouton Roll the dice
     public class RollBtnListener implements View.OnClickListener {
         private int[] dice;
-        ToggleButton die1;
-        ToggleButton die2;
-        ToggleButton die3;
-        ToggleButton die4;
-        ToggleButton die5;
         TextView result = (TextView) findViewById(R.id.result);
         ColorStateList oldColors;
         int turns;
         int maxturns;
 
 
-        public RollBtnListener(int turnNumber, ToggleButton die1, ToggleButton die2, ToggleButton die3, ToggleButton die4, ToggleButton die5) {
+        public RollBtnListener(int turnNumber) {
             this.dice = new int[5];
             this.turns = 0;
-            this.die1 = die1;
-            this.die2 = die2;
-            this.die3 = die3;
-            this.die4 = die4;
-            this.die5 = die5;
             maxturns = turnNumber;
             oldColors = result.getTextColors();
             result.setTextColor(Color.parseColor("#03A9F4"));
@@ -129,37 +115,26 @@ public class MainActivity extends AppCompatActivity {
                 mp.start();
 
                 //Gestion du jeu
-                for (int j = 1; j < 6; j++) {
+                this.turns++;
+                for (int j = 1; j <= 5; j++) {
                     ToggleButton die = (ToggleButton) findViewById(getResources().getIdentifier("die" + j, "id", getPackageName()));
                     if (die.isChecked() == false) {
                         Random r = new Random();
                         int v = r.nextInt(7 - 1) + 1;
                         this.dice[j - 1] = v;
                     }
+                    Animation shake = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shake);
+                    die.startAnimation(shake);
+                    die.setText("" + dice[j-1]);
+                    changeImage(die);
+                    die.setChecked(false);
                 }
 
-                this.die1.setText("" + dice[0]);
-                this.die2.setText("" + dice[1]);
-                this.die3.setText("" + dice[2]);
-                this.die4.setText("" + dice[3]);
-                this.die5.setText("" + dice[4]);
-                changeImage(die1);
-                changeImage(die2);
-                changeImage(die3);
-                changeImage(die4);
-                changeImage(die5);
-                this.turns++;
-                this.die1.setChecked(false);
-                this.die2.setChecked(false);
-                this.die3.setChecked(false);
-                this.die4.setChecked(false);
-                this.die5.setChecked(false);
                 if (turns == maxturns) {
-                    this.die1.setEnabled(false);
-                    this.die2.setEnabled(false);
-                    this.die3.setEnabled(false);
-                    this.die4.setEnabled(false);
-                    this.die5.setEnabled(false);
+                    for (int j = 1; j <= 5; j++) {
+                        ToggleButton die = (ToggleButton) findViewById(getResources().getIdentifier("die" + j, "id", getPackageName()));
+                        die.setEnabled(false);
+                    }
 
                     //btn.setEnabled(false);
                     handResult(result);
@@ -172,11 +147,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     result.setText(getResources().getString(R.string.chooseDice));
-                    this.die1.setEnabled(true);
-                    this.die2.setEnabled(true);
-                    this.die3.setEnabled(true);
-                    this.die4.setEnabled(true);
-                    this.die5.setEnabled(true);
+                    for (int j = 1; j <= 5; j++) {
+                        ToggleButton die = (ToggleButton) findViewById(getResources().getIdentifier("die" + j, "id", getPackageName()));
+                        die.setEnabled(true);
+                    }
                 }
             }
         }
@@ -330,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                 diePic = ContextCompat.getDrawable(this,android.R.drawable.ic_menu_info_details);
         }
         button.setAllCaps(false);
-        diePic.setBounds(0, 0, button.getMeasuredWidth() - 64, button.getMeasuredWidth() - 64);
+        diePic.setBounds(0, 0, button.getMeasuredWidth() - 70, button.getMeasuredWidth() - 64);
         ImageSpan imageSpan = new ImageSpan(diePic);
         SpannableString content = new SpannableString(button.getText().toString());
         content.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -402,5 +376,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+
+
 
 }
