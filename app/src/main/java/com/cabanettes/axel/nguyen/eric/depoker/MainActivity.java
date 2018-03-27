@@ -1,5 +1,6 @@
 package com.cabanettes.axel.nguyen.eric.depoker;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -9,12 +10,15 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -363,4 +367,40 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            confirmDialog();
+        }
+        return false;
+    }
+
+    public void confirmDialog(){
+        Log.d("Dialog", "Starting...");
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setTitle(getString(R.string.sureLeaving));
+        builder1.setMessage(getString(R.string.loseProgress));
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                getResources().getString(R.string.Yes),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                getResources().getString(R.string.No),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
 }
