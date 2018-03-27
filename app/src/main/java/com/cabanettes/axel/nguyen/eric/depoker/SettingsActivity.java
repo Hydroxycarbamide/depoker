@@ -129,6 +129,9 @@ public class SettingsActivity extends AppCompatActivity {
             case R.id.about:
                 startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
                 return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -155,6 +158,7 @@ public class SettingsActivity extends AppCompatActivity {
         editor.commit();
         valueTurn = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(PREF_TURNNUMBER, 3);
     }
+
 
 
 }
