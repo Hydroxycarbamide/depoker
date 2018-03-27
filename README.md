@@ -37,3 +37,5 @@ gradlew installDebug
 See also the list of [contributors](https://github.com/Hydroxycarbamide/depoker/graphs/contributors) who participated in this project.
 
 ## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
