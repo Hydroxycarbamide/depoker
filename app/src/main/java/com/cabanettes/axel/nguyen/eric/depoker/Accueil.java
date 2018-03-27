@@ -32,8 +32,6 @@ public class Accueil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_accueil);
 
-        //Init var
-        final String[] values = {"1", "2", "3"};
         //Init BDD
         db = new DatabaseHandler(this);
 

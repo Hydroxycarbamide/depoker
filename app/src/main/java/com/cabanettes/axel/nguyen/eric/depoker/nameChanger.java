@@ -24,6 +24,7 @@ public class nameChanger extends AppCompatActivity {
         setContentView(R.layout.activity_namechanger);
 
 
+
         //Bouton enregistrer
         Button btnRegister = (Button) findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
