@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ public class nameChanger extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_namechanger);
+
 
 
         //Bouton enregistrer
@@ -67,5 +69,14 @@ public class nameChanger extends AppCompatActivity {
 
         Toast.makeText(view.getContext(), getResources().getIdentifier("nameChanged","string",view.getContext().getPackageName()), Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
     }
 }

@@ -46,4 +46,6 @@
     <string name="No">Non</string>
     <string name="launchApp">Veuillez redémarrer le jeu pour l\'application complète du thème</string>
     <string name="changedTurn">Nombre de tours changé :</string>
+    <string name="sureLeaving">Etes-vous sûr de quitter la partie en cours ?</string>
+    <string name="loseProgress">Si vous quitter, vous perdrez toute la progression du jeu et vous devrez recommencez depuis le début.</string>
 </resources>

@@ -50,4 +50,6 @@
     <string name="No">No</string>
     <string name="launchApp">Please launch the game again for full theme application</string>
     <string name="changedTurn">Turn\'s number changed:</string>
+    <string name="sureLeaving">Are you sure to leave the current game ?</string>
+    <string name="loseProgress">If you leave here, you will lose all of your progress of the game and you will need to start over again.</string>
 </resources>

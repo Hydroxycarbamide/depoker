@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="lightbulbtoggle">@drawable/ic_action_lightbulbtoggleon</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -26,6 +27,7 @@
         <item name="colorAccent">@color/darkColorAccent</item>
         <item name="lightbulbtoggle">@drawable/ic_action_lightbulbtoggleoff</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 
     <style name="AppTheme.Dark.NoActionBar">
@@ -37,4 +39,12 @@
     <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat" />
 
     <attr name="lightbulbtoggle" format="reference"/>
+
+    <!-- Custom Animation -->
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
 </resources>

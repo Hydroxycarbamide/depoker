@@ -1,9 +1,11 @@
 package com.cabanettes.axel.nguyen.eric.depoker;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "prefs";
     private static final String PREF_DARK_THEME = "dark_theme";
+    private static final String PREF_TURNNUMBER = "turnNumber";
+    private int valueTurn;
+    private AlertDialog alertDialog1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +36,13 @@ public class SettingsActivity extends AppCompatActivity {
         if(useDarkTheme) {
             setTheme(R.style.AppTheme_Dark);
         }
+        //Initialisation du nombre de tour
+        valueTurn = preferences.getInt(PREF_TURNNUMBER, 3);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settingslayout);
+
+        final String[] values = {"1", "2", "3"};
 
         //Liste concernant la categorie GENERAL
         ListView listeGeneral = (ListView) findViewById(R.id.generalList);
@@ -50,8 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
                         startActivity(activity_name);
                         break;
                     case 1:
-                        Intent activity_turn = new Intent(view.getContext(), turnNumber.class);
-                        startActivity(activity_turn);
+                        radioButtonPopup(values);
                         break;
                 }
             }
@@ -120,9 +129,36 @@ public class SettingsActivity extends AppCompatActivity {
             case R.id.about:
                 startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
                 return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void radioButtonPopup(String[] values) {
+        Log.d("Turn value", ""+this.valueTurn);
+        AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+        builder.setTitle(getResources().getIdentifier("selectNumberTurn","string",getApplicationContext().getPackageName()));
+        builder.setSingleChoiceItems(values, valueTurn-1, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                changeValue(item+1);
+                Toast.makeText(SettingsActivity.this, getResources().getString(R.string.changedTurn)+" "+valueTurn, Toast.LENGTH_SHORT).show();
+                alertDialog1.dismiss();
+            }
+        });
+        alertDialog1 = builder.create();
+        alertDialog1.show();
+    }
+
+    //Change la valeur de turnNumber  dans /data/data/com.cabanettes.axel.nguyen.eric.depoker/shared_prefs/prefs.xml
+    private void changeValue(int value) {
+        SharedPreferences.Editor editor = getSharedPreferences("prefs", MODE_PRIVATE).edit();
+        editor.putInt(PREF_TURNNUMBER, value);
+        editor.commit();
+        valueTurn = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(PREF_TURNNUMBER, 3);
+    }
+
 
 
 }
